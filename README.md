@@ -6,9 +6,9 @@ This exercise aims to demonstrate the ability to create a functioning REST API u
 Build a REST API for the student list app using the NestJS framework and MongoDB database. 
 
 The backend database shall contain at least 3 lists:
-- user list,
-- student list,
-- exam list.
+- user list (id, userName, passwordHash, and any other fields that may be required ),
+- student list (id, firstName, lastName, and any other fields that may be required),
+- exam list (id, name, and any other fields that may be required).
 
 There should be 2 types of users: 
 - teachers,
@@ -24,6 +24,51 @@ Students can have zero or many exams assigned.
 
 Enrolled students count shall be returned together with exam data. 
 
+### Routes
+
+Please implement the following routes:
+
+1. Login user with user name and password, should return JWT token
+
+```
+POST  /login
+```
+
+2. Student List:
+- Create One (payload firstName (mandatory), lastName)
+- Get One by Id
+- Get All
+- Update one (payload firstName, lastName. Only changing values shall be provided )
+- Delete
+- Assign exam (parameter userId, payload examId)
+
+```
+POST  /student
+GET   /student/:studentId
+GET   /student
+PATCH /student/:studentId
+DEL   /student/:studentId
+POST  /student/assign-exam/:studentId
+```
+
+3 Exam List.
+- Create exam (payload examName (mandatory))
+- get One exam
+- get All exams
+```
+POST  /exam
+GET   /exam/:examId
+GET   /exam
+```
+
+4 User List.
+- Create user (payload userName, user password)
+- Get One user
+```
+POST /user
+GET  /user/:userId
+```
+*Do not forget about accss rights*
 ## Requirements
 * Use JWT for Authentication (preferred).
 * Use DTO and ValidationPipes for mandatory fields validation in Incomming Requests.
